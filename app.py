@@ -1,4 +1,6 @@
 import streamlit as st
+import datetime
+import requests
 
 '''
 # TaxiFareModel front
@@ -11,16 +13,31 @@ Either as with the title by just creating a string (or an f-string). Or as with 
 ''')
 
 '''
-## Here we would like to add some controllers in order to ask the user to select the parameters of the ride
-
-1. Let's ask for:
-- date and time
-- pickup longitude
-- pickup latitude
-- dropoff longitude
-- dropoff latitude
-- passenger count
+## Provide details of your journey:
 '''
+
+columns = st.columns(7)
+
+p_dat = columns[0].date_input(
+    'Journey Start Date',
+    datetime.date(2019, 7, 6)
+    )
+
+p_tim = columns[1].time_input(
+    'Journey Start Time',
+    datetime.time(8, 45)
+    )
+
+p_lon = columns[2].text_input("Pickup Longitude")
+
+p_lat = columns[3].text_input("Pickup Latitude")
+
+d_lon = columns[4].text_input("Dropoff Longitude")
+
+d_lat = columns[5].text_input("Dropoff Latitude")
+
+n_pas = columns[6].text_input("Number of Passengers")
+
 
 '''
 ## Once we have these, let's call our API in order to retrieve a prediction
